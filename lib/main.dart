@@ -1,7 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/screens/category_meals_screen.dart';
 import 'package:flutter_complete_guide/screens/categories_screen.dart';
+import 'package:flutter_complete_guide/screens/tabs_screen.dart';
 import './screens/meal_detail_screen.dart';
 
 void main() => runApp(MyApp());
@@ -26,18 +26,18 @@ class MyApp extends StatelessWidget {
             ),
         //ovo pointuje na widget koji ce nam biti prvi screen anase aplikacije
       ),
-      home: KategorijeEkrani(),
+      initialRoute: '/',
       routes: {
-        '/category-meals': (ctx) =>
-            CategoryMealsScreen(), //ovo pogledaj ozbiljnije deluje korisno kao navigacija
-        MealDetailScreen.routName: (ctx) => MealDetailScreen()
+        '/category-meals': (ctx) => TabsScreen(),
+        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
       },
       onGenerateRoute: (settings) {
         print(settings.arguments);
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(
-          builder: (ctx) => KategorijeEkrani(),
+          builder: (ctx) => CategoriesScreen(),
         );
       },
     );
