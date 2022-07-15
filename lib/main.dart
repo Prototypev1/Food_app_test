@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/screens/category_meals_screen.dart';
 import 'package:flutter_complete_guide/screens/categories_screen.dart';
@@ -30,6 +31,14 @@ class MyApp extends StatelessWidget {
         '/category-meals': (ctx) =>
             CategoryMealsScreen(), //ovo pogledaj ozbiljnije deluje korisno kao navigacija
         MealDetailScreen.routName: (ctx) => MealDetailScreen()
+      },
+      onGenerateRoute: (settings) {
+        print(settings.arguments);
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (ctx) => KategorijeEkrani(),
+        );
       },
     );
   }
