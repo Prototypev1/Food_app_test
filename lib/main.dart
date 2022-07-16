@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/dummy_data.dart';
 import 'package:flutter_complete_guide/screens/category_meals_screen.dart';
 import 'package:flutter_complete_guide/screens/categories_screen.dart';
 import 'package:flutter_complete_guide/screens/tabs_screen.dart';
 import './screens/meal_detail_screen.dart';
+import 'models/meal.dart';
 
 void main() => runApp(MyApp());
+
+List<Meal> meals = [
+  DUMMY_MEALS[0],
+];
+List<Meal> availablemeals = [];
+void toggleFavorite() {}
+
+void isFavorite() {}
 
 class MyApp extends StatelessWidget {
   @override
@@ -28,9 +38,11 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/category-meals': (ctx) => TabsScreen(),
-        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        '/category-meals': (ctx) => TabsScreen(meals),
+        CategoryMealsScreen.routeName: (ctx) =>
+            CategoryMealsScreen(availablemeals),
+        MealDetailScreen.routeName: (ctx) =>
+            MealDetailScreen(toggleFavorite, isFavorite),
       },
       onGenerateRoute: (settings) {
         print(settings.arguments);
